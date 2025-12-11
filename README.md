@@ -17,9 +17,6 @@ kabawuser1 interface:
 <img width="1915" height="912" alt="image" src="https://github.com/user-attachments/assets/cc5c2fb8-c7e3-4f42-bbbf-c07399b9e15d" />
 <img width="1918" height="910" alt="image" src="https://github.com/user-attachments/assets/567743bc-9c82-4dc8-9162-80d39d9af438" />
 
-mobile
-
-
 kabawuser2 interface:
 <img width="1919" height="921" alt="image" src="https://github.com/user-attachments/assets/494192bb-46b9-438c-918d-91bd0ef7710c" />
 <img width="1915" height="914" alt="image" src="https://github.com/user-attachments/assets/3ce13cd2-e5d7-44dd-b25f-1e2e57ac6fe2" />
