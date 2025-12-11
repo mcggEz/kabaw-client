@@ -11,6 +11,15 @@ not connected
 connected 
 <img width="1920" height="922" alt="image" src="https://github.com/user-attachments/assets/b4ac772b-8dfb-4559-b85f-c224919ef558" />
 
+<img width="701" height="89" alt="image" src="https://github.com/user-attachments/assets/993bfd92-b20f-4b3a-a871-2c9a95a7cdfd" />
+
+kabawuser1 interface:
+<img width="1915" height="912" alt="image" src="https://github.com/user-attachments/assets/cc5c2fb8-c7e3-4f42-bbbf-c07399b9e15d" />
+
+
+
+
+
 
 
 
