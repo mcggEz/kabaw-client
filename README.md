@@ -4,18 +4,17 @@
 
 A modern, real-time chat application built with React, TypeScript, and Tailwind CSS that connects to a WebSocket server for live messaging functionality.
 
-## 📋 Table of Contents
+## Screenshots
+not connected
+<img width="1920" height="922" alt="image" src="https://github.com/user-attachments/assets/a65400ad-2b5f-4ae3-8f19-4f60d0ad4c93" />
 
-- [Overview](#overview)
-- [Features](#features)
-- [Prerequisites](#prerequisites)
-- [Installation](#installation)
-- [Running the Application](#running-the-application)
-- [Project Structure](#project-structure)
-- [Implementation Details](#implementation-details)
-- [Requirements Coverage](#requirements-coverage)
-- [Technologies Used](#technologies-used)
-- [Troubleshooting](#troubleshooting)
+connected 
+<img width="1920" height="922" alt="image" src="https://github.com/user-attachments/assets/b4ac772b-8dfb-4559-b85f-c224919ef558" />
+
+
+
+
+
 
 ## 🎯 Overview
 
