@@ -486,5 +486,3 @@ This project is part of a technical evaluation. See the main repository README f
 ---
 
 **Note**: This application requires the WebSocket server to be running on `localhost:8080`. Make sure to start the server before running the frontend application.
-#   k a b a w - c l i e n t  
- 
