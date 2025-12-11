@@ -72,7 +72,11 @@ npm --version
 
 ## 🚀 Installation
 
-### Step 1: Navigate to Frontend Directory
+### Step 1: Clone the Repository
+
+```bash
+git clone https://github.com/mcggEz/kabaw-client.git
+```
 
 ```bash
 cd frontend
@@ -91,20 +95,13 @@ This will install all required dependencies including:
 - Vite 7.2.4
 - And other development dependencies
 
-### Step 3: Verify Installation
-
-```bash
-# Check if dependencies are installed
-npm list --depth=0
-```
 
 ## 🏃 Running the Application
 
 ### Development Mode
 
-1. **Start the WebSocket Server** (in the main repository directory):
+1. **Start the WebSocket Server**
    ```bash
-   # From the root directory
    go run main.go
    ```
    You should see: `Server starting on port :8080`
@@ -119,19 +116,6 @@ npm list --depth=0
    - The application will be available at `http://localhost:5173` (or the port shown in terminal)
    - Open this URL in your web browser
 
-### Production Build
-
-To create a production build:
-
-```bash
-npm run build
-```
-
-The built files will be in the `dist/` directory. To preview the production build:
-
-```bash
-npm run preview
-```
 
 ## 📁 Project Structure
 
@@ -182,67 +166,6 @@ const connectWebSocket = () => {
 
 Messages are stored in React state and automatically update when new messages arrive:
 
-```typescript
-const [messages, setMessages] = useState<Message[]>([])
-
-ws.onmessage = (event) => {
-  const message: Message = JSON.parse(event.data)
-  setMessages((prev) => [...prev, message])
-}
-```
-
-**Message Types Handled:**
-- `message`: Regular chat messages from users
-- `system`: System notifications (welcome messages, etc.)
-- `user_connected`: Special message containing the assigned user ID
-
-### User ID Management
-
-The application extracts and stores the user ID from `user_connected` messages:
-
-```typescript
-if (message.type === 'user_connected' && message.user_id) {
-  setCurrentUserID(message.user_id)
-}
-```
-
-The user ID is:
-- Displayed in the header
-- Used to identify own messages (for styling)
-- Cleared on disconnect
-
-### Message Sending
-
-Messages are sent via the WebSocket connection:
-
-```typescript
-const sendMessage = () => {
-  const message = {
-    type: 'message',
-    content: inputMessage.trim(),
-  }
-  wsRef.current.send(JSON.stringify(message))
-  setInputMessage('')
-}
-```
-
-**Features:**
-- Input validation (non-empty messages)
-- Enter key support (Shift+Enter for new line)
-- Automatic input clearing after send
-- Connection state checking before sending
-
-### Auto-scroll Functionality
-
-The application automatically scrolls to the latest message:
-
-```typescript
-const messagesEndRef = useRef<HTMLDivElement>(null)
-
-useEffect(() => {
-  scrollToBottom()
-}, [messages])
-```
 
 ### Responsive Design
 
@@ -303,13 +226,6 @@ const connectWebSocket = () => {
   - `system`: System notifications
   - `user_connected`: User ID assignment
 
-**Implementation:**
-```typescript
-ws.onmessage = (event) => {
-  const message: Message = JSON.parse(event.data)
-  setMessages((prev) => [...prev, message])
-}
-```
 
 ### 3. Message Sending ✅
 
@@ -318,14 +234,6 @@ ws.onmessage = (event) => {
 - ✅ Enter key support (Enter to send, Shift+Enter for new line)
 - ✅ Input validation (prevents empty messages)
 
-**Implementation:**
-```typescript
-const sendMessage = () => {
-  if (!inputMessage.trim() || !wsRef.current) return
-  wsRef.current.send(JSON.stringify({ type: 'message', content: inputMessage.trim() }))
-  setInputMessage('')
-}
-```
 
 ### 4. User Interface Requirements ✅
 
@@ -353,20 +261,6 @@ const sendMessage = () => {
 - ✅ **Input validation**: Prevents sending empty messages
 - ✅ **Connection state checking**: Verifies WebSocket is open before sending
 
-**Error Handling Implementation:**
-```typescript
-ws.onerror = (event) => {
-  setConnectionStatus('error')
-  setError('Connection error. Make sure the server is running on port 8080.')
-}
-
-ws.onclose = (event) => {
-  setConnectionStatus('disconnected')
-  if (event.code !== 1000) {
-    setError('Connection closed unexpectedly')
-  }
-}
-```
 
 ## 🛠 Technologies Used
 
@@ -383,77 +277,6 @@ ws.onclose = (event) => {
 - **ESLint** - Code linting
 - **TypeScript ESLint** - TypeScript-specific linting rules
 
-## 🐛 Troubleshooting
-
-### Common Issues
-
-#### 1. WebSocket Connection Refused
-
-**Problem**: Cannot connect to WebSocket server
-
-**Solution**:
-- Ensure the Go WebSocket server is running: `go run main.go`
-- Verify server is on port 8080
-- Check browser console for detailed error messages
-
-#### 2. CORS Issues
-
-**Problem**: Cross-origin connection blocked
-
-**Solution**:
-- The server is configured to allow all origins
-- Ensure you're connecting to `ws://localhost:8080/ws`
-- Check server logs for connection attempts
-
-#### 3. Messages Not Appearing
-
-**Problem**: Messages sent but not displayed
-
-**Solution**:
-- Check browser console for `[FRONTEND-MESSAGE]` logs
-- Verify WebSocket connection status is "Connected"
-- Ensure you're connected to the correct channel
-
-#### 4. User ID Not Showing
-
-**Problem**: User ID not displayed in header
-
-**Solution**:
-- Wait for `user_connected` message from server
-- Check browser console for `[FRONTEND-USER-ID]` log
-- Verify connection is established
-
-#### 5. Build Errors
-
-**Problem**: `npm run build` fails
-
-**Solution**:
-```bash
-# Clear node_modules and reinstall
-rm -rf node_modules package-lock.json
-npm install
-```
-
-#### 6. Port Already in Use
-
-**Problem**: Vite dev server port is already in use
-
-**Solution**:
-- Vite will automatically try the next available port
-- Or specify a different port: `npm run dev -- --port 3000`
-
-## 📝 Console Logging
-
-The application provides detailed console logging for debugging:
-
-- **`[FRONTEND-CONNECT]`**: Connection attempts and successful connections
-- **`[FRONTEND-MESSAGE]`**: All incoming messages (pretty-printed JSON)
-- **`[FRONTEND-SEND]`**: Outgoing messages before sending
-- **`[FRONTEND-USER-ID]`**: User ID assignment and clearing
-- **`[FRONTEND-DISCONNECT]`**: Disconnection events
-- **`[FRONTEND-ERROR]`**: Connection errors and failures
-
-To view logs, open browser Developer Tools (F12) and check the Console tab.
 
 ## 🎨 Design Decisions
 
@@ -467,21 +290,6 @@ To view logs, open browser Developer Tools (F12) and check the Console tab.
 - **Responsive Design**: Built-in breakpoint system
 - **Consistency**: Design system enforced through utilities
 - **Small Bundle Size**: Only used classes are included in production
-
-### Why Vite?
-- **Fast Development**: Instant server start and HMR
-- **Optimized Builds**: Efficient production builds
-- **Modern Tooling**: ES modules and native ESM support
-
-## 📄 License
-
-This project is part of a technical evaluation. See the main repository README for details.
-
-## 🙏 Acknowledgments
-
-- WebSocket server implementation provided in the main repository
-- Design inspiration from kabaw.ai website
-- Built with modern web technologies and best practices
 
 ---
 
